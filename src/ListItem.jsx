@@ -62,19 +62,20 @@ const ListItem = () => {
   };
 
   return (
-    <div className="w-full max-w-2xl h-[calc(100vh-6rem)] mx-auto flex flex-col ">
+    <div className="w-full max-w-2xl h-[calc(100vh-6rem)] mx-auto flex flex-col">
       <div className="flex items-center mb-4">
-        <input
-          type="text"
+        <textarea
           value={input}
           placeholder="Add item here..."
           onChange={(e) => setInput(e.target.value)}
-          onKeyDown={(c) => {
-            if (c.key === "Enter") {
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
               handleAdd();
             }
           }}
-          className="flex-grow p-2 border border-gray-300 rounded mr-2"
+          className="flex-grow p-2 border border-gray-300 rounded mr-2 resize-none overflow-auto"
+          rows="1"
+          style={{ overflow: "hidden", resize: "none" }}
         />
         <button
           onClick={handleAdd}
@@ -115,26 +116,28 @@ const ListItem = () => {
                 />
               ) : (
                 <span
-                  className={`flex-grow break-words ${
+                  className={`flex-grow overflow-hidden ${
                     e.tick ? "line-through text-gray-500" : ""
                   }`}
-                  onClick={() => handleEditClick(e.id, e.msg)}
+                  style={{ wordBreak: "break-all" }} // Fallback for unsupported classes
                 >
                   {e.msg}
                 </span>
               )}
-              <button
-                onClick={() => handleEditClick(e.id, e.msg)}
-                className="ml-2 text-blue-500 hover:text-blue-600"
-              >
-                <i className="fa fa-pencil" aria-hidden="true"></i>
-              </button>
-              <button
-                onClick={() => deleteTodo(e.id)}
-                className="ml-2 text-red-500 hover:text-red-600"
-              >
-                <i className="fa fa-trash" aria-hidden="true"></i>
-              </button>
+              <div className="ml-80">
+                <button
+                  onClick={() => handleEditClick(e.id, e.msg)}
+                  className="ml-2 mr-2 text-blue-500 hover:text-blue-600"
+                >
+                  <i className="fa fa-pencil" aria-hidden="true"></i>
+                </button>
+                <button
+                  onClick={() => deleteTodo(e.id)}
+                  className="ml-2 text-red-500 hover:text-red-600"
+                >
+                  <i className="fa fa-trash" aria-hidden="true"></i>
+                </button>
+              </div>
             </li>
           ))}
         </ul>

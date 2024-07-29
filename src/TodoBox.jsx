@@ -6,23 +6,15 @@ const TodoBox = () => {
   const [editid, setEditid] = useState(null);
   const [editInput, setEditInput] = useState("");
 
-  // Load todos from local storage on component mount
   useEffect(() => {
-    const loadTodos = () => {
-      const storedTodos = JSON.parse(localStorage.getItem("todos")) || [];
-      setTodoObject(storedTodos);
-    };
-
-    loadTodos();
+    const todolist = JSON.parse(localStorage.getItem("todos"));
+    if (todolist && todolist.length > 0) {
+      setTodoObject(todolist);
+    }
   }, []);
 
-  // Save todos to local storage whenever todoObject changes
   useEffect(() => {
-    const saveTodos = () => {
-      localStorage.setItem("todos", JSON.stringify(todoObject));
-    };
-
-    saveTodos();
+    localStorage.setItem("todos", JSON.stringify(todoObject));
   }, [todoObject]);
 
   const addTodo = (Todo) => {
@@ -57,8 +49,9 @@ const TodoBox = () => {
     }
   };
 
-  const handleEditChange = (e) => {
-    setEditInput(e.target.value);
+  const handleEditChange = (id, msg) => {
+    setEditid(id);
+    setEditInput(msg);
   };
 
   const handleUpdate = (id) => {
@@ -119,7 +112,7 @@ const TodoBox = () => {
                   value={editInput}
                   autoFocus
                   onBlur={() => handleUpdate(item.id)}
-                  onChange={handleEditChange}
+                  onChange={(e) => setEditInput(e.target.value)}
                   onKeyDown={(e) => {
                     if (e.key === "Enter") handleUpdate(item.id);
                   }}
@@ -137,7 +130,7 @@ const TodoBox = () => {
               )}
               <div className="ml-2 gap-6">
                 <button
-                  onClick={() => setEditid(item.id)}
+                  onClick={() => handleEditChange(item.id, item.msg)}
                   className="text-blue-500 hover:text-blue-600 mr-4"
                   aria-label={`Edit todo ${item.msg}`}
                 >

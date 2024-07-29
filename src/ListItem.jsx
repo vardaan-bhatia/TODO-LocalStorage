@@ -1,38 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
+import { useTodo } from "./TodoContext";
 
 const ListItem = () => {
-  const [todoObject, setTodoObject] = useState([]);
-  const [input, setInput] = useState("");
-  const [editId, setEditId] = useState(null);
-  const [editInput, setEditInput] = useState("");
-
-  const addTodo = (todo) => {
-    setTodoObject((prevtodos) => [todo, ...prevtodos]);
-  };
-
-  const deleteTodo = (id) => {
-    setTodoObject((prevtodos) => prevtodos.filter((e) => e.id !== id));
-  };
-
-  const updateTodo = (id, updatedtodo) => {
-    setTodoObject((prevtodos) =>
-      prevtodos.map((iteratedTodo) =>
-        iteratedTodo.id === id
-          ? { ...iteratedTodo, msg: updatedtodo }
-          : iteratedTodo
-      )
-    );
-  };
-
-  const toggle = (id) => {
-    setTodoObject((prevtodos) =>
-      prevtodos.map((iteratedTodo) =>
-        iteratedTodo.id === id
-          ? { ...iteratedTodo, tick: !iteratedTodo.tick }
-          : iteratedTodo
-      )
-    );
-  };
+  const {
+    todoObject,
+    addTodo,
+    deleteTodo,
+    updateTodo,
+    toggle,
+    editId,
+    setEditId,
+    editInput,
+    setEditInput,
+    input,
+    setInput,
+  } = useTodo();
 
   const handleAdd = () => {
     if (input.trim()) {

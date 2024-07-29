@@ -15,7 +15,6 @@ const ListItem = () => {
     input,
     setInput,
   } = useTodo();
-
   const handleAdd = () => {
     if (input.trim()) {
       const newTodo = {

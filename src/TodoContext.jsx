@@ -49,6 +49,7 @@ const TodoProvider = ({ children }) => {
 
   const value = {
     todoObject,
+    setTodoObject,
     addTodo,
     deleteTodo,
     updateTodo,

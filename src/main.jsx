@@ -6,9 +6,7 @@ import "@fortawesome/fontawesome-free/css/all.min.css"; //we have to install thi
 import { TodoProvider } from "./TodoContext.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <TodoProvider>
-      <App />
-    </TodoProvider>
-  </React.StrictMode>
+  <TodoProvider>
+    <App />
+  </TodoProvider>
 );

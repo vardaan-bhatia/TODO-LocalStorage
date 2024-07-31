@@ -2,6 +2,10 @@
 
 This TODO list application built with React and `react-beautiful-dnd` includes features for managing tasks efficiently. Users can add, update, delete, reorder, and mark TODO items as completed. The application also uses local storage to persist TODO items across browser sessions.
 
+## Live Demo
+
+You can view the live demo of the application [here](https://tododragndrop-three.vercel.app/).
+
 ## Features
 
 - **Add TODO Items**: Add new tasks to the list.
@@ -16,12 +20,3 @@ This TODO list application built with React and `react-beautiful-dnd` includes f
 - **React**: Frontend library for building user interfaces.
 - **react-beautiful-dnd**: A drag-and-drop library for React.
 - **Tailwind CSS**: Utility-first CSS framework for styling.
-
-## Live Demo
-
-You can view the live demo of the application [here](https://tododragndrop-three.vercel.app/).
-
-## How It Works
-
-- **Local Storage**: TODO items are stored in the browser's local storage. When the application is loaded, it retrieves the TODO items from local storage and populates the list. Any changes to the TODO list (add, update, delete) are also saved to local storage, ensuring that your tasks persist across sessions.
-
